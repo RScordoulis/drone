@@ -23,7 +23,7 @@ function fly(robot) {
     bot = robot;
     bot.drone.config('general:navdata_demo', 'TRUE');
 
-    bot.nav.on("navdata", function(data) {
+   /* bot.nav.on("navdata", function(data) {
         // console.log(data);
     });
 
@@ -37,28 +37,45 @@ function fly(robot) {
 
     bot.nav.on("batteryChange", function(data) {
         console.log("Battery level:", data);
-    });
+    });*/
+
     bot.drone.disableEmergency();
     bot.drone.ftrim();
     bot.drone.takeoff();
-    bot.drone.right(0.2);
-    after(3*1000, function() {
-        bot.drone.right(0);
-    });
     after(8*1000, function() {
-        bot.drone.right(0);
+        bot.drone.right(0.1);
+    });
+    after(9*1000, function(){
+        bot.drone.hover();
+    });
+    after(10*1000, function() {
+        bot.drone.forward(0.1);
+    });
+    after(11*1000, function(){
+        bot.drone.hover();
     });
     after(12*1000, function() {
-        bot.drone.right(0);
+        bot.drone.left(0.1);
     });
-    after(20*1000, function() {
-        bot.drone.right(0);
+    after(13*1000, function(){
+        bot.drone.hover();
     });
-
-    after(21*1000, function() {
+    after(14*1000, function() {
+        bot.drone.back(0.1);
+    });
+    after(15*1000, function(){
+        bot.drone.hover();
+    });
+    after(16*1000, function() {
+        bot.drone.right(0.1);
+    });
+    after(17*1000, function(){
+        bot.drone.hover();
+    });
+    after(18*1000, function() {
         bot.drone.land();
     });
-    after(25*1000, function() {
+    after(22*1000, function() {
         bot.drone.stop();
     });
 }

@@ -1,6 +1,7 @@
 function init() {
-    tracker = initTracker("#example");
-    tracking.track("#example .drone", tracker);
+    tracker = initTracker("#droneView");
+    //tracking.track("#example .drone", tracker);
+    droneConnection/streamImage(tracker, "#droneView.drone");
 }
 
 function initTracker(element) {

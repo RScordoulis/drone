@@ -1,5 +1,5 @@
 var Cylon = require('cylon');
-
+var utils = require('./utils/droneUtils.js');
 
 // Initialise the robot
 Cylon.robot()
@@ -39,45 +39,64 @@ function fly(robot) {
         console.log("Battery level:", data);
     });*/
 
+    bot.drone.getPngStream().on("data", utils.sendFrame);
+    utils.instructionListener.on('move', moveDrone);
+
+
     bot.drone.disableEmergency();
     bot.drone.ftrim();
     bot.drone.takeoff();
-    after(8*1000, function() {
-        bot.drone.right(0.1);
+
+    after(5*1000, function() {
+        bot.drone.forward(0.05);
     });
-    after(9*1000, function(){
-        bot.drone.hover();
-    });
-    after(10*1000, function() {
-        bot.drone.forward(0.1);
-    });
-    after(11*1000, function(){
-        bot.drone.hover();
-    });
-    after(12*1000, function() {
-        bot.drone.left(0.1);
-    });
-    after(13*1000, function(){
-        bot.drone.hover();
-    });
-    after(14*1000, function() {
-        bot.drone.back(0.1);
-    });
-    after(15*1000, function(){
-        bot.drone.hover();
-    });
-    after(16*1000, function() {
-        bot.drone.right(0.1);
-    });
-    after(17*1000, function(){
-        bot.drone.hover();
-    });
-    after(18*1000, function() {
+
+    after(30*1000, function() {
         bot.drone.land();
     });
-    after(22*1000, function() {
+    after(35*1000, function() {
         bot.drone.stop();
     });
+
+
+    //after(8*1000, function() {
+    //    bot.drone.right(0.1);
+    //});
+    //after(9*1000, function(){
+    //    bot.drone.hover();
+    //});
+    //after(10*1000, function() {
+    //    bot.drone.forward(0.1);
+    //});
+    //after(11*1000, function(){
+    //    bot.drone.hover();
+    //});
+    //after(12*1000, function() {
+    //    bot.drone.left(0.1);
+    //});
+    //after(13*1000, function(){
+    //    bot.drone.hover();
+    //});
+    //after(14*1000, function() {
+    //    bot.drone.back(0.1);
+    //});
+    //after(15*1000, function(){
+    //    bot.drone.hover();
+    //});
+    //after(16*1000, function() {
+    //    bot.drone.right(0.1);
+    //});
+    //after(17*1000, function(){
+    //    bot.drone.hover();
+    //});
+    //after(18*1000, function() {
+    //    bot.drone.land();
+    //});
+    //after(22*1000, function() {
+    //    bot.drone.stop();
+    //});
 }
+
+
 
 Cylon.start();
